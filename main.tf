@@ -9,11 +9,14 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-east-1"
+      ec2:
+         key_name: newkey
+         region: us-east-1
+         instance_type: t2.micro
+         image: ami-0ab4d1e9cf9a1215a
+         wait: yes
+         group: default
+         count: 1
+         vpc_subnet_id: subnet-47d29266
+         assign_public_ip: yes
 }
-
-# Create a VPC
-resource "aws_vpc" "main" {
-  cidr_block = "172.31.0.0/16"
- }  
-
